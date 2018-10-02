@@ -54,7 +54,12 @@ RUN set -xe; \
     libxml2-dev \
     libzip-dev \
     libpcre3-dev; \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
+  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
+  ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"; \
+  [ "$EXPECTED_SIGNATURE" = "$ACTUAL_SIGNATURE" ]; \
+  php composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
+  rm -rf composer-setup.php /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY ssmtp.conf /etc/ssmtp/
 COPY php.ini /usr/local/etc/php/
