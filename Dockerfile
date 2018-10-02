@@ -28,7 +28,7 @@ RUN set -xe; \
     memcached-3.0.4 \
     redis-4.1.1 \
     xdebug-2.6.1 \
-    zip-1.15.3 \
+    zip-1.15.3; \
   docker-php-ext-enable \
     apcu \
     memcached \
