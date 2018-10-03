@@ -18,7 +18,8 @@ RUN set -xe; \
     sudo \
     libzip4 \
     libzip-dev \
-    locales; \
+    locales \
+    unzip; \
   echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen; \
   echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
