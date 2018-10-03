@@ -63,5 +63,3 @@ RUN set -xe; \
 
 COPY ssmtp.conf /etc/ssmtp/
 COPY php.ini /usr/local/etc/php/
-
-VOLUME /var/www
