@@ -25,11 +25,11 @@ RUN set -xe; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
   pecl install \
-    apcu-5.1.12 \
-    memcached-3.0.4 \
-    redis-4.1.1 \
-    xdebug-2.6.1 \
-    zip-1.15.3; \
+    apcu \
+    memcached \
+    redis \
+    xdebug \
+    zip; \
   docker-php-ext-enable \
     apcu \
     memcached \
