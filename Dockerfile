@@ -12,13 +12,13 @@ RUN set -xe; \
     imagemagick \
     libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
     libmemcached11 libmemcachedutil2 libmemcached-dev \
-    libxml2-dev \
     libpcre3 libpcre3-dev \
+    libpq5 libpq-dev \
+    libxml2-dev \
+    libzip4 libzip-dev \
+    locales \
     ssmtp \
     sudo \
-    libzip4 \
-    libzip-dev \
-    locales \
     unzip; \
   echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen; \
   echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen; \
@@ -45,6 +45,8 @@ RUN set -xe; \
     opcache \
     pdo \
     pdo_mysql \
+    pdo_pgsql \
+    pgsql \
     soap; \
   sed -ri 's/^\s*;?\s*pm.max_children = .*$/pm.max_children = 32/' /usr/local/etc/php-fpm.d/www.conf; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
@@ -52,9 +54,10 @@ RUN set -xe; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     libmemcached-dev \
+    libpcre3-dev \
+    libpq-dev \
     libxml2-dev \
-    libzip-dev \
-    libpcre3-dev; \
+    libzip-dev; \
   EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
   ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"; \
