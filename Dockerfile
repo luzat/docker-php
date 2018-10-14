@@ -17,7 +17,7 @@ RUN set -xe; \
     libxml2-dev \
     libzip4 libzip-dev \
     locales \
-    libodbc1 unixodbc-dev \
+    libodbc1 odbcinst unixodbc-dev \
     ssmtp \
     sudo \
     unzip; \
