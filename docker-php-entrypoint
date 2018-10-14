@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+[ -n "$DGID" ] && { groupmod -g "$DGID" development; usermod -g "$DGID" development; }
+[ -n "$DUID" ] && usermod -u "$DUID" development
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+        set -- php-fpm "$@"
+fi
+
+exec "$@"

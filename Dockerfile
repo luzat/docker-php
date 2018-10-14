@@ -5,6 +5,8 @@ ENV \
   PHP_TIMEZONE=Europe/Berlin
 
 RUN set -xe; \
+  addgroup --gid 1000 development; \
+  adduser --home /var/www --shell /bin/bash --no-create-home --uid 1000 --gid 1000 development; \
   apt-get update; \
   apt-get dist-upgrade -y; \
   apt-get install -y \
@@ -81,5 +83,6 @@ RUN set -xe; \
 
 COPY ssmtp.conf /etc/ssmtp/
 COPY php.ini /usr/local/etc/php/
+COPY docker-php-entrypoint /usr/local/bin/
 
 WORKDIR /var/www
