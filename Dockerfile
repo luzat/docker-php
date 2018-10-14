@@ -17,6 +17,7 @@ RUN set -xe; \
     libxml2-dev \
     libzip4 libzip-dev \
     locales \
+    libodbc1 unixodbc-dev \
     ssmtp \
     sudo \
     unzip; \
@@ -27,13 +28,17 @@ RUN set -xe; \
   pecl install \
     apcu \
     memcached \
+    pdo_sqlsrv \
     redis \
+    sqlsrv \
     xdebug \
     zip; \
   docker-php-ext-enable \
     apcu \
     memcached \
+    pdo_sqlsrv \
     redis \
+    sqlsrv \
     xdebug \
     zip; \
   docker-php-ext-configure gd \
@@ -57,7 +62,8 @@ RUN set -xe; \
     libpcre3-dev \
     libpq-dev \
     libxml2-dev \
-    libzip-dev; \
+    libzip-dev \
+    unixodbc-dev; \
   EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
   ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"; \

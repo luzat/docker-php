@@ -15,9 +15,11 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `pdo`
   * `pdo_mysql`
   * `pdo_pgsql`
+  * `pdo_sqlsrv`
   * `pgsql`
   * `redis`
   * `soap`
+  * `sqlsrv`
   * `xdebug`
   * `zip`
 * Configurability:
