@@ -8,6 +8,12 @@ RUN set -xe; \
   apt-get update; \
   apt-get dist-upgrade -y; \
   apt-get install -y \
+    apt-transport-https \
+    gnupg; \
+  curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
+  curl -q https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
+  apt-get update; \
+  ACCEPT_EULA=Y apt-get install -y \
     git \
     imagemagick \
     libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
@@ -17,7 +23,7 @@ RUN set -xe; \
     libxml2-dev \
     libzip4 libzip-dev \
     locales \
-    libodbc1 odbcinst unixodbc-dev \
+    libodbc1 msodbcsql17 odbcinst unixodbc unixodbc-dev \
     ssmtp \
     sudo \
     unzip; \
@@ -57,6 +63,8 @@ RUN set -xe; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
   apt-get clean; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    apt-transport-https \
+    gnupg \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     libmemcached-dev \
     libpcre3-dev \
