@@ -1,4 +1,4 @@
-FROM php:7.2.10-fpm
+FROM php:7.2.11-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
