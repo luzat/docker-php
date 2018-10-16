@@ -63,8 +63,6 @@ RUN set -xe; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
   apt-get clean; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    apt-transport-https \
-    gnupg \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     libmemcached-dev \
     libpcre3-dev \
