@@ -1,4 +1,4 @@
-FROM php:7.0.32-fpm
+FROM php:5.6.38-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -8,12 +8,6 @@ RUN set -xe; \
   apt-get update; \
   apt-get dist-upgrade -y; \
   apt-get install -y \
-    apt-transport-https \
-    gnupg; \
-  curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-  curl -q https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
-  apt-get update; \
-  ACCEPT_EULA=Y apt-get install -y \
     git \
     imagemagick \
     libicu57 libicu-dev \
@@ -26,7 +20,6 @@ RUN set -xe; \
     libxslt1.1 libxslt1-dev \
     libzip4 libzip-dev \
     locales \
-    libodbc1 msodbcsql17 odbcinst unixodbc unixodbc-dev \
     ssmtp \
     sudo \
     unzip; \
@@ -35,19 +28,15 @@ RUN set -xe; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
   pecl install \
-    apcu \
-    memcached \
-    pdo_sqlsrv \
+    apcu-4.0.11 \
+    memcached-2.2.0 \
     redis \
-    sqlsrv \
-    xdebug \
+    xdebug-2.5.5 \
     zip; \
   docker-php-ext-enable \
     apcu \
     memcached \
-    pdo_sqlsrv \
     redis \
-    sqlsrv \
     xdebug \
     zip; \
   docker-php-ext-configure gd \
@@ -57,6 +46,7 @@ RUN set -xe; \
     gd \
     intl \
     mcrypt \
+    mysql \
     mysqli \
     opcache \
     pdo \
@@ -77,8 +67,7 @@ RUN set -xe; \
     libpq-dev \
     libxml2-dev \
     libxslt1-dev \
-    libzip-dev \
-    unixodbc-dev; \
+    libzip-dev; \
   EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
   ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"; \
