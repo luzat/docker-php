@@ -1,4 +1,4 @@
-FROM php:7.2.10-fpm
+FROM php:7.0.32-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -19,6 +19,7 @@ RUN set -xe; \
     libicu57 libicu-dev \
     libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
     libmemcached11 libmemcachedutil2 libmemcached-dev \
+    libmcrypt4 libmcrypt-dev \
     libpcre3 libpcre3-dev \
     libpq5 libpq-dev \
     libxml2-dev \
@@ -55,6 +56,7 @@ RUN set -xe; \
   docker-php-ext-install -j$(nproc) \
     gd \
     intl \
+    mcrypt \
     mysqli \
     opcache \
     pdo \
@@ -69,6 +71,7 @@ RUN set -xe; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     libicu-dev \
+    libmcrypt-dev \
     libmemcached-dev \
     libpcre3-dev \
     libpq-dev \
