@@ -9,6 +9,8 @@ This is a customized docker image of PHP FPM based on the official images. It is
 * Commonly used extensions are enabled:
   * `apcu`
   * `gd`
+  * `intl`
+  * `mcrypt` (< 7.1)
   * `memcached`
   * `mysqli`
   * `opcache`
@@ -21,6 +23,7 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `soap`
   * `sqlsrv`
   * `xdebug`
+  * `xsl`
   * `zip`
 * Configurability:
   * `*.ini` taken from `/usr/local/etc/php/conf.d.local` (samples in [conf.d](conf.d))

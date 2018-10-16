@@ -16,11 +16,13 @@ RUN set -xe; \
   ACCEPT_EULA=Y apt-get install -y \
     git \
     imagemagick \
+    libicu57 libicu-dev \
     libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
     libmemcached11 libmemcachedutil2 libmemcached-dev \
     libpcre3 libpcre3-dev \
     libpq5 libpq-dev \
     libxml2-dev \
+    libxslt1.1 libxslt1-dev \
     libzip4 libzip-dev \
     locales \
     libodbc1 msodbcsql17 odbcinst unixodbc unixodbc-dev \
@@ -52,22 +54,26 @@ RUN set -xe; \
     --with-jpeg-dir=/usr/include/; \
   docker-php-ext-install -j$(nproc) \
     gd \
+    intl \
     mysqli \
     opcache \
     pdo \
     pdo_mysql \
     pdo_pgsql \
     pgsql \
-    soap; \
+    soap \
+    xsl; \
   sed -ri 's/^\s*;?\s*pm.max_children = .*$/pm.max_children = 32/' /usr/local/etc/php-fpm.d/www.conf; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
   apt-get clean; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+    libicu-dev \
     libmemcached-dev \
     libpcre3-dev \
     libpq-dev \
     libxml2-dev \
+    libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
   EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
