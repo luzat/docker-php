@@ -68,6 +68,9 @@ RUN set -xe; \
     libxml2-dev \
     libxslt1-dev \
     libzip-dev; \
+  curl -q -o /usr/local/bin/n98-magerun.phar https://files.magerun.net/n98-magerun.phar; \
+  curl -q -o /usr/local/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar; \
+  chmod +x /usr/local/bin/n98-magerun.phar /usr/local/bin/n98-magerun2.phar; \
   EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
   ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"; \
