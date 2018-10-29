@@ -14,6 +14,7 @@ RUN set -xe; \
   curl -q https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
   apt-get update; \
   ACCEPT_EULA=Y apt-get install -y \
+    ghostscript \
     git \
     imagemagick \
     libicu57 libicu-dev \
