@@ -1,4 +1,4 @@
-FROM php:5.6.38-fpm
+FROM php:5.5.38-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -10,7 +10,7 @@ RUN set -xe; \
   apt-get install -y \
     git \
     imagemagick \
-    libicu57 libicu-dev \
+    libicu52 libicu-dev \
     libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
     libmemcached11 libmemcachedutil2 libmemcached-dev \
     libmcrypt4 libmcrypt-dev \
@@ -18,7 +18,7 @@ RUN set -xe; \
     libpq5 libpq-dev \
     libxml2-dev \
     libxslt1.1 libxslt1-dev \
-    libzip4 libzip-dev \
+    libzip2 libzip-dev \
     locales \
     ssmtp \
     sudo \
