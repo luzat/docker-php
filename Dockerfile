@@ -1,4 +1,4 @@
-FROM php:7.3.1-fpm
+FROM php:7.3.3-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -16,6 +16,7 @@ RUN set -xe; \
   ACCEPT_EULA=Y apt-get install -y \
     ghostscript \
     git \
+    graphicsmagick \
     imagemagick \
     libicu57 libicu-dev \
     libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
