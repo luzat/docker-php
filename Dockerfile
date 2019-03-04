@@ -38,10 +38,10 @@ RUN set -xe; \
   pecl install \
     apcu \
     memcached \
-    pdo_sqlsrv-5.5.0preview \
+    pdo_sqlsrv \
     redis \
-    sqlsrv-5.5.0preview \
-    xdebug-2.7.0beta1 \
+    sqlsrv \
+    xdebug-2.7.0RC2 \
     zip; \
   docker-php-ext-enable \
     apcu \
