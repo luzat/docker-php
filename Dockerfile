@@ -1,4 +1,4 @@
-FROM php:7.3.9-fpm
+FROM php:7.4.0RC1-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -38,10 +38,10 @@ RUN set -xe; \
   pecl install \
     apcu \
     memcached \
-    pdo_sqlsrv \
+    pdo_sqlsrv-5.7.0preview \
     redis \
-    sqlsrv \
-    xdebug \
+    sqlsrv-5.7.0preview \
+    xdebug-2.8.0beta2 \
     zip; \
   docker-php-ext-enable \
     apcu \
