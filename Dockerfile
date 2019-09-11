@@ -26,7 +26,7 @@ RUN set -xe; \
     libzip4 libzip-dev \
     locales \
     libodbc1 msodbcsql17 odbcinst unixodbc unixodbc-dev \
-    ssmtp \
+    msmtp msmtp-mta \
     sudo \
     unzip; \
   echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen; \
@@ -86,7 +86,7 @@ RUN set -xe; \
   php composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
   rm -rf composer-setup.php /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
-COPY ssmtp.conf /etc/ssmtp/
+COPY msmtprc /etc/
 COPY php.ini /usr/local/etc/php/
 
 WORKDIR /var/www
