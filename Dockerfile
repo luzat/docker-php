@@ -1,4 +1,4 @@
-FROM php:7.2.17-fpm
+FROM php:7.2.23-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -18,7 +18,7 @@ RUN set -xe; \
     git \
     graphicsmagick \
     imagemagick \
-    libicu57 libicu-dev \
+    libicu63 libicu-dev \
     libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
     libmemcached11 libmemcachedutil2 libmemcached-dev \
     libpcre3 libpcre3-dev \
