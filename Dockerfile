@@ -1,4 +1,4 @@
-FROM php:5.6.38-fpm
+FROM php:5.6.40-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -30,7 +30,7 @@ RUN set -xe; \
   pecl install \
     apcu-4.0.11 \
     memcached-2.2.0 \
-    redis \
+    redis-2.2.8 \
     xdebug-2.5.5 \
     zip; \
   docker-php-ext-enable \
