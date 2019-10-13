@@ -30,7 +30,7 @@ RUN set -xe; \
   pecl install \
     apcu-4.0.11 \
     memcached-2.2.0 \
-    redis \
+    redis-2.2.8 \
     xdebug-2.5.5 \
     zip; \
   docker-php-ext-enable \
