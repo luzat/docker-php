@@ -1,4 +1,4 @@
-FROM php:7.2.24-fpm
+FROM php:7.2.25-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -36,13 +36,13 @@ RUN set -xe; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
   pecl install \
-    apcu \
-    memcached \
-    pdo_sqlsrv \
-    redis \
-    sqlsrv \
-    xdebug \
-    zip; \
+    apcu-5.1.18 \
+    memcached-3.1.4 \
+    pdo_sqlsrv-5.6.1 \
+    redis-5.1.1 \
+    sqlsrv-5.6.1 \
+    xdebug-2.8.0 \
+    zip-1.15.5; \
   docker-php-ext-enable \
     apcu \
     memcached \
