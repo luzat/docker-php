@@ -37,11 +37,11 @@ RUN set -xe; \
   locale-gen; \
   pecl install \
     apcu-5.1.18 \
-    memcached-3.1.4 \
-    pdo_sqlsrv-5.7.0preview \
+    memcached-3.1.5 \
+    pdo_sqlsrv-5.7.1preview \
     redis-5.1.1 \
-    sqlsrv-5.7.0preview \
-    xdebug-2.8.0 \
+    sqlsrv-5.7.1preview \
+    xdebug-2.9.0 \
     zip-1.15.5; \
   docker-php-ext-enable \
     apcu \
