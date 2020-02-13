@@ -1,4 +1,4 @@
-FROM php:7.3.12-fpm
+FROM php:7.3.14-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -37,12 +37,12 @@ RUN set -xe; \
   locale-gen; \
   pecl install \
     apcu-5.1.18 \
-    memcached-3.1.4 \
-    pdo_sqlsrv-5.6.1 \
+    memcached-3.1.5 \
+    pdo_sqlsrv-5.8.0 \
     redis-5.1.1 \
-    sqlsrv-5.6.1 \
-    xdebug-2.8.0 \
-    zip-1.15.5; \
+    sqlsrv-5.8.0 \
+    xdebug-2.9.2 \
+    zip-1.17.1; \
   docker-php-ext-enable \
     apcu \
     memcached \
