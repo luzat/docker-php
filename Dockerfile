@@ -1,4 +1,4 @@
-FROM php:7.4.0-fpm
+FROM php:7.4.2-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -19,7 +19,11 @@ RUN set -xe; \
     graphicsmagick \
     imagemagick \
     libicu63 libicu-dev \
-    libfreetype6 libfreetype6-dev libjpeg62-turbo libjpeg62-turbo-dev libpng-dev \
+    libfreetype6 libfreetype6-dev \
+    libjpeg62-turbo libjpeg62-turbo-dev \
+    libpng-dev \
+    libxpm4 libxpm-dev \
+    libwebp6 libwebp-dev \
     libmemcached11 libmemcachedutil2 libmemcached-dev \
     libpcre3 libpcre3-dev \
     libpq5 libpq-dev \
@@ -38,11 +42,11 @@ RUN set -xe; \
   pecl install \
     apcu-5.1.18 \
     memcached-3.1.5 \
-    pdo_sqlsrv-5.7.1preview \
+    pdo_sqlsrv-5.8.0 \
     redis-5.1.1 \
-    sqlsrv-5.7.1preview \
-    xdebug-2.9.0 \
-    zip-1.15.5; \
+    sqlsrv-5.8.0 \
+    xdebug-2.9.2 \
+    zip-1.17.1; \
   docker-php-ext-enable \
     apcu \
     memcached \
@@ -52,8 +56,10 @@ RUN set -xe; \
     xdebug \
     zip; \
   docker-php-ext-configure gd \
-    --with-freetype-dir=/usr/include/ \
-    --with-jpeg-dir=/usr/include/; \
+    --with-freetype=/usr/include/ \
+    --with-jpeg=/usr/include/ \
+    --with-webp=/usr/include/ \
+    --with-xpm=/usr/include/; \
   docker-php-ext-install -j$(nproc) \
     gd \
     intl \
@@ -69,7 +75,11 @@ RUN set -xe; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
   apt-get clean; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libwebp-dev \
+    libxpm-dev \
     libicu-dev \
     libmemcached-dev \
     libpcre3-dev \
