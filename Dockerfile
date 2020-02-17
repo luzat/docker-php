@@ -61,6 +61,7 @@ RUN set -xe; \
     --with-webp=/usr/include/ \
     --with-xpm=/usr/include/; \
   docker-php-ext-install -j$(nproc) \
+    bcmath \
     gd \
     intl \
     mysqli \
