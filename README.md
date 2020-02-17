@@ -8,6 +8,7 @@ This is a customized docker image of PHP FPM based on the official images. It is
 
 * Commonly used extensions are enabled:
   * `apcu`
+  * `bcmath`
   * `gd`
   * `intl`
   * `memcached`
