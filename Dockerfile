@@ -1,4 +1,4 @@
-FROM php:7.4.2-fpm
+FROM php:7.4.3-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -43,10 +43,10 @@ RUN set -xe; \
     apcu-5.1.18 \
     memcached-3.1.5 \
     pdo_sqlsrv-5.8.0 \
-    redis-5.1.1 \
+    redis-5.2.0 \
     sqlsrv-5.8.0 \
     xdebug-2.9.2 \
-    zip-1.17.1; \
+    zip-1.17.2; \
   docker-php-ext-enable \
     apcu \
     memcached \
@@ -89,9 +89,8 @@ RUN set -xe; \
     libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
-  curl -q -o /usr/local/bin/n98-magerun.phar https://files.magerun.net/n98-magerun.phar; \
   curl -q -o /usr/local/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar; \
-  chmod +x /usr/local/bin/n98-magerun.phar /usr/local/bin/n98-magerun2.phar; \
+  chmod +x /usr/local/bin/n98-magerun2.phar; \
   EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
   ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"; \
