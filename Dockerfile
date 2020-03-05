@@ -1,4 +1,4 @@
-FROM php:7.2.27-fpm
+FROM php:7.2.28-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -39,10 +39,10 @@ RUN set -xe; \
     apcu-5.1.18 \
     memcached-3.1.5 \
     pdo_sqlsrv-5.8.0 \
-    redis-5.1.1 \
+    redis-5.2.0 \
     sqlsrv-5.8.0 \
     xdebug-2.9.2 \
-    zip-1.17.1; \
+    zip-1.17.2; \
   docker-php-ext-enable \
     apcu \
     memcached \
