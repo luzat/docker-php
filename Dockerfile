@@ -34,13 +34,13 @@ RUN set -xe; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
   pecl install \
-    apcu \
-    memcached \
-    pdo_sqlsrv \
-    redis \
-    sqlsrv \
-    xdebug \
-    zip; \
+    apcu-5.1.18 \
+    memcached-3.1.5 \
+    pdo_sqlsrv-5.6.1 \
+    redis-5.2.1 \
+    sqlsrv-5.6.1 \
+    xdebug-2.9.4 \
+    zip-1.18.2; \
   docker-php-ext-enable \
     apcu \
     memcached \
