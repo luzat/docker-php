@@ -1,10 +1,11 @@
-FROM php:7.4.3-fpm
+FROM php:7.4.4-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
   PHP_TIMEZONE=Europe/Berlin
 
 RUN set -xe; \
+  echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup; \
   apt-get update; \
   apt-get dist-upgrade -y; \
   apt-get install -y \
@@ -43,10 +44,10 @@ RUN set -xe; \
     apcu-5.1.18 \
     memcached-3.1.5 \
     pdo_sqlsrv-5.8.0 \
-    redis-5.2.0 \
+    redis-5.2.1 \
     sqlsrv-5.8.0 \
-    xdebug-2.9.2 \
-    zip-1.17.2; \
+    xdebug-2.9.4 \
+    zip-1.18.2; \
   docker-php-ext-enable \
     apcu \
     memcached \
