@@ -38,10 +38,10 @@ RUN set -xe; \
     apcu-5.1.18 \
     memcached-3.1.5 \
     pdo_sqlsrv-5.3.0 \
-    redis-5.2.1 \
+    redis-5.2.2 \
     sqlsrv-5.3.0 \
     xdebug-2.7.2 \
-    zip-1.18.2; \
+    zip-1.19.0; \
   docker-php-ext-enable \
     apcu \
     memcached \
