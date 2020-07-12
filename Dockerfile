@@ -2,7 +2,8 @@ FROM php:7.3.19-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
-  PHP_TIMEZONE=Europe/Berlin
+  PHP_TIMEZONE=Europe/Berlin \
+  COMPOSER_MEMORY_LIMIT=-1
 
 RUN set -xe; \
   apt-get update; \
