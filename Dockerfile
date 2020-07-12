@@ -2,7 +2,8 @@ FROM php:7.4.7-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
-  PHP_TIMEZONE=Europe/Berlin
+  PHP_TIMEZONE=Europe/Berlin \
+  COMPOSER_MEMORY_LIMIT=-1
 
 RUN set -xe; \
   echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup; \
