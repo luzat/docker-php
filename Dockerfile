@@ -66,6 +66,7 @@ RUN set -xe; \
     pdo_pgsql \
     pgsql \
     soap \
+    sockets \
     xsl; \
   sed -ri 's/^\s*;?\s*pm.max_children = .*$/pm.max_children = 32/' /usr/local/etc/php-fpm.d/www.conf; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
