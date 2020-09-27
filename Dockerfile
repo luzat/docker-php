@@ -47,7 +47,7 @@ RUN set -xe; \
     pdo_sqlsrv-5.8.1 \
     redis-5.2.2 \
     sqlsrv-5.8.1 \
-    xdebug-2.9.6 \
+    xdebug-2.9.7 \
     zip-1.19.0; \
   docker-php-ext-enable \
     apcu \
