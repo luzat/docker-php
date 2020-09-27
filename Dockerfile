@@ -1,4 +1,4 @@
-FROM php:7.4.7-fpm
+FROM php:7.4.9-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -47,7 +47,7 @@ RUN set -xe; \
     pdo_sqlsrv-5.8.1 \
     redis-5.2.2 \
     sqlsrv-5.8.1 \
-    xdebug-2.9.6 \
+    xdebug-2.9.7 \
     zip-1.19.0; \
   docker-php-ext-enable \
     apcu \
@@ -73,6 +73,7 @@ RUN set -xe; \
     pdo_pgsql \
     pgsql \
     soap \
+    sockets \
     xsl; \
   sed -ri 's/^\s*;?\s*pm.max_children = .*$/pm.max_children = 32/' /usr/local/etc/php-fpm.d/www.conf; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \

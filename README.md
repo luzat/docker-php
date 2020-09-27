@@ -21,6 +21,7 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `pgsql`
   * `redis`
   * `soap`
+  * `sockets`
   * `sqlsrv`
   * `xdebug`
   * `xsl`
