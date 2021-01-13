@@ -1,4 +1,4 @@
-FROM php:7.4.10-fpm
+FROM php:7.4.14-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -42,13 +42,13 @@ RUN set -xe; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
   pecl install \
-    apcu-5.1.18 \
+    apcu-5.1.19 \
     memcached-3.1.5 \
     pdo_sqlsrv-5.8.1 \
-    redis-5.2.2 \
+    redis-5.3.2 \
     sqlsrv-5.8.1 \
-    xdebug-2.9.7 \
-    zip-1.19.0; \
+    xdebug-3.0.2 \
+    zip-1.19.2; \
   docker-php-ext-enable \
     apcu \
     memcached \
@@ -94,12 +94,8 @@ RUN set -xe; \
     unixodbc-dev; \
   curl -q -o /usr/local/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar; \
   chmod +x /usr/local/bin/n98-magerun2.phar; \
-  EXPECTED_SIGNATURE="$(curl -q https://composer.github.io/installer.sig)"; \
-  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
-  ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"; \
-  [ "$EXPECTED_SIGNATURE" = "$ACTUAL_SIGNATURE" ]; \
-  php composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
-  rm -rf composer-setup.php /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
+  curl -q https://raw.githubusercontent.com/composer/getcomposer.org/95238c3f58da2dfc442ae537ad0c9dbdb808a232/web/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
 COPY msmtprc /etc/
 COPY php.ini /usr/local/etc/php/
