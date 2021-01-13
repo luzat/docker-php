@@ -94,8 +94,12 @@ RUN set -xe; \
     unixodbc-dev; \
   curl -q -o /usr/local/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar; \
   chmod +x /usr/local/bin/n98-magerun2.phar; \
-  curl -q https://raw.githubusercontent.com/composer/getcomposer.org/95238c3f58da2dfc442ae537ad0c9dbdb808a232/web/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
+  curl -q -o /usr/local/bin/composer-1 https://getcomposer.org/download/1.10.19/composer.phar; \
+  chmod +x /usr/local/bin/composer-1; \
+  curl -q -o /usr/local/bin/composer-2 https://getcomposer.org/download/2.0.8/composer.phar; \
+  chmod +x /usr/local/bin/composer-2; \
+  ln -s composer-2 /usr/local/bin/composer; \
+  rm -rf composer-setup.php /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
 COPY msmtprc /etc/
 COPY php.ini /usr/local/etc/php/
