@@ -1,4 +1,4 @@
-FROM php:7.4.14-fpm
+FROM php:7.4.15-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -23,6 +23,7 @@ RUN set -xe; \
     libicu63 libicu-dev \
     libfreetype6 libfreetype6-dev \
     libjpeg62-turbo libjpeg62-turbo-dev \
+    libmagickwand-6.q16-dev \
     libpng-dev \
     libxpm4 libxpm-dev \
     libwebp6 libwebp-dev \
@@ -43,14 +44,16 @@ RUN set -xe; \
   locale-gen; \
   pecl install \
     apcu-5.1.19 \
+    imagick-3.4.4 \
     memcached-3.1.5 \
-    pdo_sqlsrv-5.8.1 \
-    redis-5.3.2 \
-    sqlsrv-5.8.1 \
-    xdebug-3.0.2 \
+    pdo_sqlsrv-5.9.0 \
+    redis-5.3.3 \
+    sqlsrv-5.9.0 \
+    xdebug-3.0.3 \
     zip-1.19.2; \
   docker-php-ext-enable \
     apcu \
+    imagick \
     memcached \
     pdo_sqlsrv \
     redis \
@@ -81,6 +84,7 @@ RUN set -xe; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
+    libmagickwand-6.q16-dev \
     libpng-dev \
     libwebp-dev \
     libxpm-dev \
