@@ -10,6 +10,7 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `apcu`
   * `bcmath`
   * `gd`
+  * `imagick`
   * `intl`
   * `memcached`
   * `mysqli`
