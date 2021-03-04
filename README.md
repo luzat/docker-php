@@ -8,8 +8,11 @@ This is a customized docker image of PHP FPM based on the official images. It is
 
 * Commonly used extensions are enabled:
   * `apcu`
+  * `bz2`
   * `bcmath`
+  * `exif`
   * `gd`
+  * `gettext`
   * `imagick`
   * `intl`
   * `memcached`
@@ -18,6 +21,7 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `pdo`
   * `pdo_mysql`
   * `pdo_pgsql`
+  * `pdo_sqlite`
   * `pdo_sqlsrv`
   * `pgsql`
   * `redis`
@@ -31,9 +35,9 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `*.ini` taken from `/usr/local/etc/php/conf.d.local` (samples in [conf.d](conf.d))
   * timezone taken from `$PHP_TIMEZONE` (default: `Europe/Berlin`)
 * Other:
-  * Composer, n98-magerun and n98-magerun2 preinstalled
+  * `composer-1`, `composer-2`/`composer`, and `n98-magerun2` preinstalled
   * UTF-8 locales built for `en_US`, `en_GB` and `de_DE`
-  * file extensions not limited to `.php`
+  * file extensions not limited to `.php` (dangerous!)
   * ssmtp preconfigured as MTA which delivers to `mailcatcher:1025`
 
 ## Getting started
