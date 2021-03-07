@@ -1,4 +1,4 @@
-FROM php:7.4.15-fpm
+FROM php:7.4.16-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -105,7 +105,7 @@ RUN set -xe; \
     libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
-  chmod +x /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2; \
+  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2; \
   ln -s composer-2 /usr/local/bin/composer; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
