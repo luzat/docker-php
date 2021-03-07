@@ -5,6 +5,10 @@ ENV \
   PHP_TIMEZONE=Europe/Berlin \
   COMPOSER_MEMORY_LIMIT=-1
 
+ADD https://files.magerun.net/n98-magerun2.phar /usr/local/bin/n98-magerun2.phar
+ADD https://getcomposer.org/download/1.10.20/composer.phar /usr/local/bin/composer-1
+ADD https://getcomposer.org/download/2.0.11/composer.phar /usr/local/bin/composer-2
+
 RUN set -xe; \
   echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup; \
   apt-get update; \
@@ -12,14 +16,14 @@ RUN set -xe; \
   apt-get install -y \
     apt-transport-https \
     gnupg; \
-  curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-  curl -q https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
+  curl -q https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
+  curl -q https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
   apt-get update; \
   ACCEPT_EULA=Y apt-get install -y \
     ghostscript \
     git \
     graphicsmagick \
-    imagemagick \
+    libbz2-dev \
     libicu63 libicu-dev \
     libfreetype6 libfreetype6-dev \
     libjpeg62-turbo libjpeg62-turbo-dev \
@@ -42,7 +46,7 @@ RUN set -xe; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
   pecl install \
-    apcu-5.1.19 \
+    apcu-5.1.20 \
     memcached-3.1.5 \
     pdo_sqlsrv-5.9.0 \
     redis-5.3.3 \
@@ -64,7 +68,10 @@ RUN set -xe; \
     --with-xpm=/usr/include/; \
   docker-php-ext-install -j$(nproc) \
     bcmath \
+    bz2 \
+    exif \
     gd \
+    gettext \
     intl \
     mysqli \
     opcache \
@@ -79,6 +86,7 @@ RUN set -xe; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
   apt-get clean; \
   apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    libbz2-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -92,14 +100,9 @@ RUN set -xe; \
     libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
-  curl -q -o /usr/local/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar; \
-  chmod +x /usr/local/bin/n98-magerun2.phar; \
-  curl -q -o /usr/local/bin/composer-1 https://getcomposer.org/download/1.10.19/composer.phar; \
-  chmod +x /usr/local/bin/composer-1; \
-  curl -q -o /usr/local/bin/composer-2 https://getcomposer.org/download/2.0.8/composer.phar; \
-  chmod +x /usr/local/bin/composer-2; \
+  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2; \
   ln -s composer-2 /usr/local/bin/composer; \
-  rm -rf composer-setup.php /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
 COPY msmtprc /etc/
 COPY php.ini /usr/local/etc/php/
