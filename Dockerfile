@@ -1,4 +1,4 @@
-FROM php:8.0.3-fpm
+FROM php:8.0.7-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -6,8 +6,9 @@ ENV \
   COMPOSER_MEMORY_LIMIT=-1
 
 ADD https://files.magerun.net/n98-magerun2.phar /usr/local/bin/n98-magerun2.phar
-ADD https://getcomposer.org/download/1.10.20/composer.phar /usr/local/bin/composer-1
-ADD https://getcomposer.org/download/2.0.11/composer.phar /usr/local/bin/composer-2
+ADD https://getcomposer.org/download/1.10.22/composer.phar /usr/local/bin/composer-1
+ADD https://getcomposer.org/download/2.1.3/composer.phar /usr/local/bin/composer-2
+ADD https://github.com/symfony/cli/releases/download/v4.25.4/symfony_linux_amd64 /usr/local/bin/symfony
 
 RUN set -xe; \
   echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup; \
@@ -49,10 +50,10 @@ RUN set -xe; \
     apcu-5.1.20 \
     memcached-3.1.5 \
     pdo_sqlsrv-5.9.0 \
-    redis-5.3.3 \
+    redis-5.3.4 \
     sqlsrv-5.9.0 \
-    xdebug-3.0.3 \
-    zip-1.19.2; \
+    xdebug-3.0.4 \
+    zip-1.19.3; \
   docker-php-ext-enable \
     apcu \
     memcached \
@@ -100,7 +101,7 @@ RUN set -xe; \
     libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
-  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2; \
+  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2 /usr/local/bin/symfony; \
   ln -s composer-2 /usr/local/bin/composer; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
