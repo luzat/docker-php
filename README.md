@@ -13,6 +13,7 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `exif`
   * `gd`
   * `gettext`
+  * `imagick`
   * `intl`
   * `memcached`
   * `mysqli`
