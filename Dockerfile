@@ -1,4 +1,4 @@
-FROM php:7.4.16-fpm
+FROM php:7.4.26-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -6,26 +6,26 @@ ENV \
   COMPOSER_MEMORY_LIMIT=-1
 
 ADD https://files.magerun.net/n98-magerun2.phar /usr/local/bin/n98-magerun2.phar
-ADD https://getcomposer.org/download/1.10.20/composer.phar /usr/local/bin/composer-1
-ADD https://getcomposer.org/download/2.0.11/composer.phar /usr/local/bin/composer-2
+ADD https://getcomposer.org/download/1.10.24/composer.phar /usr/local/bin/composer-1
+ADD https://getcomposer.org/download/2.1.14/composer.phar /usr/local/bin/composer-2
+ADD https://github.com/symfony/cli/releases/download/v4.26.11/symfony_linux_amd64 /usr/local/bin/symfony
+ADD https://packages.microsoft.com/keys/microsoft.asc /etc/apt/trusted.gpg.d/microsoft.asc
+ADD https://packages.microsoft.com/config/ubuntu/21.04/prod.list /etc/apt/sources.list.d/microsoft-prod.list
 
 RUN set -xe; \
   echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup; \
+  echo msodbcsql17 msodbcsql/ACCEPT_EULA boolean true | debconf-set-selections; \
+  chmod +r /etc/apt/trusted.gpg.d/microsoft.asc /etc/apt/sources.list.d/microsoft-prod.list; \
   apt-get update; \
   apt-get dist-upgrade -y; \
   apt-get install -y \
-    apt-transport-https \
-    gnupg; \
-  curl -q https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-  curl -q https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
-  apt-get update; \
-  ACCEPT_EULA=Y apt-get install -y \
     ghostscript \
     git \
+    gnupg \
     graphicsmagick \
     imagemagick \
     libbz2-dev \
-    libicu63 libicu-dev \
+    libicu67 libicu-dev \
     libfreetype6 libfreetype6-dev \
     libjpeg62-turbo libjpeg62-turbo-dev \
     libmagickwand-6.q16-dev \
@@ -47,15 +47,15 @@ RUN set -xe; \
   echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
-  pecl install \
-    apcu-5.1.20 \
-    imagick-3.4.4 \
+  MAKEFLAGS="-j$(nproc)" pecl install \
+    apcu-5.1.21 \
+    imagick-3.6.0 \
     memcached-3.1.5 \
-    pdo_sqlsrv-5.9.0 \
-    redis-5.3.3 \
-    sqlsrv-5.9.0 \
-    xdebug-3.0.3 \
-    zip-1.19.2; \
+    pdo_sqlsrv-5.10.0beta2 \
+    redis-5.3.4 \
+    sqlsrv-5.10.0beta2 \
+    xdebug-3.1.2 \
+    zip-1.20.0; \
   docker-php-ext-enable \
     apcu \
     imagick \
@@ -105,7 +105,7 @@ RUN set -xe; \
     libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
-  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2; \
+  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2 /usr/local/bin/symfony; \
   ln -s composer-2 /usr/local/bin/composer; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
@@ -113,3 +113,4 @@ COPY msmtprc /etc/
 COPY php.ini /usr/local/etc/php/
 
 WORKDIR /var/www
+
