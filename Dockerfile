@@ -1,4 +1,4 @@
-FROM php:8.1.0-fpm
+FROM php:8.1.1-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -27,7 +27,7 @@ RUN set -xe; \
     libicu67 libicu-dev \
     libfreetype6 libfreetype6-dev \
     libjpeg62-turbo libjpeg62-turbo-dev \
-    libmagickwand-6.q16-dev \
+    libmagickwand-6.q16 libmagickwand-6.q16-dev \
     libpng-dev \
     libxpm4 libxpm-dev \
     libwebp6 libwebp-dev \
@@ -92,6 +92,8 @@ RUN set -xe; \
     libbz2-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
+    libmagickwand-6.q16-dev \
+    libpng-dev \
     libpng-dev \
     libwebp-dev \
     libxpm-dev \
