@@ -8,13 +8,13 @@ ENV \
 ADD https://files.magerun.net/n98-magerun2.phar /usr/local/bin/n98-magerun2.phar
 ADD https://getcomposer.org/download/1.10.25/composer.phar /usr/local/bin/composer-1
 ADD https://getcomposer.org/download/2.2.6/composer.phar /usr/local/bin/composer-2
-ADD https://github.com/symfony/cli/releases/download/v5.3.3/symfony_linux_amd64 /usr/local/bin/symfony
 ADD https://packages.microsoft.com/keys/microsoft.asc /etc/apt/trusted.gpg.d/microsoft.asc
 ADD https://packages.microsoft.com/config/ubuntu/21.04/prod.list /etc/apt/sources.list.d/microsoft-prod.list
 
 RUN set -xe; \
   echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup; \
   echo msodbcsql17 msodbcsql/ACCEPT_EULA boolean true | debconf-set-selections; \
+  echo 'deb [trusted=yes] https://repo.symfony.com/apt/ /' > /etc/apt/sources.list.d/symfony-cli.list; \
   chmod +r /etc/apt/trusted.gpg.d/microsoft.asc /etc/apt/sources.list.d/microsoft-prod.list; \
   apt-get update; \
   apt-get dist-upgrade -y; \
@@ -41,6 +41,7 @@ RUN set -xe; \
     libodbc1 msodbcsql17 odbcinst unixodbc unixodbc-dev \
     msmtp msmtp-mta \
     sudo \
+    symfony-cli \
     unzip; \
   echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen; \
   echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen; \
@@ -83,8 +84,8 @@ RUN set -xe; \
     pdo_pgsql \
     pgsql \
     soap \
-    sockets \
     xsl; \
+  CFLAGS="$CFLAGS -D_GNU_SOURCE" docker-php-ext-install -j$(nproc) sockets; \
   sed -ri 's/^\s*;?\s*pm.max_children = .*$/pm.max_children = 32/' /usr/local/etc/php-fpm.d/www.conf; \
   echo 'security.limit_extensions =' >> /usr/local/etc/php-fpm.d/www.conf; \
   apt-get clean; \
@@ -104,7 +105,7 @@ RUN set -xe; \
     libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
-  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2 /usr/local/bin/symfony; \
+  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2; \
   ln -s composer-2 /usr/local/bin/composer; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
