@@ -1,4 +1,4 @@
-FROM php:8.0.14-fpm
+FROM php:8.0.15-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -6,9 +6,9 @@ ENV \
   COMPOSER_MEMORY_LIMIT=-1
 
 ADD https://files.magerun.net/n98-magerun2.phar /usr/local/bin/n98-magerun2.phar
-ADD https://getcomposer.org/download/1.10.24/composer.phar /usr/local/bin/composer-1
-ADD https://getcomposer.org/download/2.1.14/composer.phar /usr/local/bin/composer-2
-ADD https://github.com/symfony/cli/releases/download/v4.26.11/symfony_linux_amd64 /usr/local/bin/symfony
+ADD https://getcomposer.org/download/1.10.25/composer.phar /usr/local/bin/composer-1
+ADD https://getcomposer.org/download/2.2.6/composer.phar /usr/local/bin/composer-2
+ADD https://github.com/symfony/cli/releases/download/v5.3.3/symfony_linux_amd64 /usr/local/bin/symfony
 ADD https://packages.microsoft.com/keys/microsoft.asc /etc/apt/trusted.gpg.d/microsoft.asc
 ADD https://packages.microsoft.com/config/ubuntu/21.04/prod.list /etc/apt/sources.list.d/microsoft-prod.list
 
@@ -50,10 +50,10 @@ RUN set -xe; \
     apcu-5.1.21 \
     imagick-3.6.0 \
     memcached-3.1.5 \
-    pdo_sqlsrv-5.10.0beta2 \
+    pdo_sqlsrv-5.10.0 \
     redis-5.3.4 \
-    sqlsrv-5.10.0beta2 \
-    xdebug-3.1.2 \
+    sqlsrv-5.10.0 \
+    xdebug-3.1.3 \
     zip-1.20.0; \
   docker-php-ext-enable \
     apcu \
