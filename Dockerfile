@@ -106,7 +106,7 @@ RUN set -xe; \
     libxslt1-dev \
     libzip-dev \
     unixodbc-dev; \
-  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2 /usr/local/bin/symfony; \
+  chmod +rx /usr/local/bin/n98-magerun2.phar /usr/local/bin/composer-1 /usr/local/bin/composer-2; \
   ln -s composer-2 /usr/local/bin/composer; \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html
 
