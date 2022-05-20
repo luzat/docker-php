@@ -1,5 +1,7 @@
 FROM php:8.1.6-fpm
 
+LABEL org.opencontainers.image.source=https://github.com/luzat/docker-php
+
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
   PHP_TIMEZONE=Europe/Berlin \
