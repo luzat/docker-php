@@ -25,10 +25,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          # list of Docker images to use as base name for tags
+          flavor: |
+            latest=false
           images: |
             ghcr.io/luzat/php
-          # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule,pattern=nightly
             type=schedule,pattern={{date 'YYYYMMDD'}}
@@ -38,6 +38,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
       -
         name: Login to GHCR
         if: github.event_name != 'pull_request'
