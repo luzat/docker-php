@@ -1,4 +1,4 @@
-FROM php:8.0.19-fpm
+FROM php:8.0.26-fpm
 
 ENV \
   PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/usr/local/etc/php/conf.d.local \
@@ -7,7 +7,7 @@ ENV \
 
 ADD https://files.magerun.net/n98-magerun2.phar /usr/local/bin/n98-magerun2.phar
 ADD https://getcomposer.org/download/1.10.26/composer.phar /usr/local/bin/composer-1
-ADD https://getcomposer.org/download/2.3.5/composer.phar /usr/local/bin/composer-2
+ADD https://getcomposer.org/download/2.4.4/composer.phar /usr/local/bin/composer-2
 ADD https://packages.microsoft.com/keys/microsoft.asc /etc/apt/trusted.gpg.d/microsoft.asc
 ADD https://packages.microsoft.com/config/debian/11/prod.list /etc/apt/sources.list.d/microsoft-prod.list
 
@@ -48,14 +48,14 @@ RUN set -xe; \
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen; \
   locale-gen; \
   MAKEFLAGS="-j$(nproc)" pecl install \
-    apcu-5.1.21 \
+    apcu-5.1.22 \
     imagick-3.7.0 \
     memcached-3.2.0 \
     pdo_sqlsrv-5.10.1 \
     redis-5.3.7 \
     sqlsrv-5.10.1 \
-    xdebug-3.1.4 \
-    zip-1.20.1; \
+    xdebug-3.1.6 \
+    zip-1.21.1; \
   docker-php-ext-enable \
     apcu \
     imagick \
