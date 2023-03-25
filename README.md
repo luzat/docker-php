@@ -35,7 +35,7 @@ This is a customized docker image of PHP FPM based on the official images. It is
   * `*.ini` taken from `/usr/local/etc/php/conf.d.local` (samples in [conf.d](conf.d))
   * timezone taken from `$PHP_TIMEZONE` (default: `Europe/Berlin`)
 * Other:
-  * `composer-1`, `composer-2`/`composer`, `n98-magerun2`, and `symfony` preinstalled
+  * `composer`, `n98-magerun2`, and `symfony` preinstalled
   * UTF-8 locales built for `en_US`, `en_GB` and `de_DE`
   * file extensions not limited to `.php` (dangerous!)
   * ssmtp preconfigured as MTA which delivers to `mailcatcher:1025`
