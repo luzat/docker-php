@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 FROM php:8.1.17-fpm
 
 LABEL org.opencontainers.image.source=https://github.com/luzat/docker-php
