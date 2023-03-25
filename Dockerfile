@@ -1,4 +1,4 @@
-FROM php:8.1.17-fpm
+FROM php:8.2.4-fpm
 
 LABEL org.opencontainers.image.source=https://github.com/luzat/docker-php
 
