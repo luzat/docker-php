@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM php:8.2.12-fpm
+FROM php:8.3.10-fpm
 
 LABEL org.opencontainers.image.source=https://github.com/luzat/docker-php
 
@@ -31,7 +31,6 @@ RUN <<-EOF
     libicu72 libicu-dev \
     libfreetype6 libfreetype6-dev \
     libjpeg62-turbo libjpeg62-turbo-dev \
-    libmagickwand-6.q16 libmagickwand-6.q16-dev \
     libpng-dev \
     libxpm4 libxpm-dev \
     libwebp7 libwebp-dev \
@@ -55,16 +54,14 @@ RUN <<-EOF
   locale-gen
   MAKEFLAGS="-j$(nproc)" pecl install \
     apcu-5.1.23 \
-    imagick-3.7.0 \
     memcached-3.2.0 \
-    pdo_sqlsrv-5.11.1 \
+    pdo_sqlsrv-5.12.0 \
     redis-6.0.2 \
-    sqlsrv-5.11.1 \
-    xdebug-3.2.2 \
+    sqlsrv-5.12.0 \
+    xdebug-3.3.2 \
     zip-1.22.3
   docker-php-ext-enable \
     apcu \
-    imagick \
     memcached \
     pdo_sqlsrv \
     redis \
@@ -99,8 +96,6 @@ RUN <<-EOF
     libbz2-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
-    libmagickwand-6.q16-dev \
-    libpng-dev \
     libpng-dev \
     libwebp-dev \
     libxpm-dev \
