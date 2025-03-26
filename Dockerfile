@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM php:8.3.10-fpm
+FROM php:8.3.19-fpm
 
 LABEL org.opencontainers.image.source=https://github.com/luzat/docker-php
 
@@ -53,13 +53,13 @@ RUN <<-EOF
   echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen
   locale-gen
   MAKEFLAGS="-j$(nproc)" pecl install \
-    apcu-5.1.23 \
-    memcached-3.2.0 \
+    apcu-5.1.24 \
+    memcached-3.3.0 \
     pdo_sqlsrv-5.12.0 \
-    redis-6.0.2 \
+    redis-6.2.0 \
     sqlsrv-5.12.0 \
-    xdebug-3.3.2 \
-    zip-1.22.3
+    xdebug-3.4.2 \
+    zip-1.22.5
   docker-php-ext-enable \
     apcu \
     memcached \
