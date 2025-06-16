@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM php:8.3.19-fpm
+FROM php:8.4.8-fpm
 
 LABEL org.opencontainers.image.source=https://github.com/luzat/docker-php
 
@@ -9,7 +9,7 @@ ENV PHP_TIMEZONE=Europe/Berlin
 ENV COMPOSER_MEMORY_LIMIT=-1
 
 ADD https://files.magerun.net/n98-magerun2.phar /usr/local/bin/n98-magerun2.phar
-ADD https://getcomposer.org/download/2.6.5/composer.phar /usr/local/bin/composer
+ADD https://getcomposer.org/download/2.8.9/composer.phar /usr/local/bin/composer
 ADD https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb /microsoft-prod.deb
 ADD https://packages.microsoft.com/config/debian/12/prod.list /etc/apt/sources.list.d/microsoft-prod.list
 
@@ -58,8 +58,8 @@ RUN <<-EOF
     pdo_sqlsrv-5.12.0 \
     redis-6.2.0 \
     sqlsrv-5.12.0 \
-    xdebug-3.4.2 \
-    zip-1.22.5
+    xdebug-3.4.4 \
+    zip-1.22.6
   docker-php-ext-enable \
     apcu \
     memcached \
